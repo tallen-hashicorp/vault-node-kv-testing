@@ -1,0 +1,23 @@
+{
+  "name": "vault-node-kv-testing",
+  "version": "1.0.0",
+  "description": "## Setting Up Vault Auth We will use JWT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tallen-hashicorp/vault-node-kv-testing.git"
+  },
+  "author": "Tyler Allen (tyler.allen@hashicorp.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tallen-hashicorp/vault-node-kv-testing/issues"
+  },
+  "homepage": "https://github.com/tallen-hashicorp/vault-node-kv-testing#readme",
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2",
+    "node-vault": "^0.10.2"
+  }
+}

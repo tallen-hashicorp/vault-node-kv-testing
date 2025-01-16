@@ -24,11 +24,11 @@ resource "vault_jwt_auth_backend" "jwt" {
 
   tune {
     default_lease_ttl = "1h"
-    max_lease_ttl = "2h"
+    max_lease_ttl     = "2h"
   }
 }
 
-resource "vault_jwt_auth_backend_role" "example" {
+resource "vault_jwt_auth_backend_role" "api-role" {
   backend        = vault_jwt_auth_backend.jwt.path
   role_name      = "api"
   token_policies = ["api-full", "default"]
@@ -39,4 +39,17 @@ resource "vault_jwt_auth_backend_role" "example" {
   }
   user_claim = "app"
   role_type  = "jwt"
+}
+
+# Not needed for prod, just for testing
+resource "vault_kv_secret_v2" "example" {
+  mount               = vault_mount.api.path
+  name                = "notion"
+  cas                 = 0
+  delete_all_versions = true
+  data_json = jsonencode(
+    {
+      foo = "bar"
+    }
+  )
 }
