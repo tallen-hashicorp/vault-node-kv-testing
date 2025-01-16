@@ -1,3 +1,10 @@
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.use(express.json());
+
+
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 
@@ -39,7 +46,6 @@ async function loginVaultJWT(token) {
 async function selfLookup() {
     try {
         var self = await vault.tokenLookupSelf();
-        console.log("ttl: " + self.data.ttl)
         return true;
     } catch (e) {
         return false;
@@ -57,18 +63,19 @@ async function getKv(path) {
     return kv.data.data;
 }
 
+app.get('/', async (req, res) => {
+    var notion = await getKv("notion")
+    res.json(notion)
+  });
 
-async function main() {
+
+async function initialVaultLogin() {
     let jwt = await generateJWT();
     await loginVaultJWT(jwt);
-
-    if (await selfLookup()) {
-        console.log("Still Logged In")
-    } else {
-        console.log("Not Logged In")
-    }
-
-    console.log(await getKv("notion"));
 }
 
-main();
+initialVaultLogin();
+
+app.listen(port, () => {
+    console.log(`Server started on port ${port}`);
+  });

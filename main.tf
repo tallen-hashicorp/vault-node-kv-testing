@@ -32,7 +32,9 @@ resource "vault_jwt_auth_backend_role" "api-role" {
   backend        = vault_jwt_auth_backend.jwt.path
   role_name      = "api"
   token_policies = ["api-full", "default"]
-  
+
+  # token_ttl = 5
+
   bound_claims = {
     app = "api-app-name"
   }

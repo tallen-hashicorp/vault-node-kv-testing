@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/tallen-hashicorp/vault-node-kv-testing#readme",
   "dependencies": {
+    "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "node-vault": "^0.10.2"
   }
