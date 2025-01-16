@@ -32,8 +32,7 @@ resource "vault_jwt_auth_backend_role" "api-role" {
   backend        = vault_jwt_auth_backend.jwt.path
   role_name      = "api"
   token_policies = ["api-full", "default"]
-
-
+  
   bound_claims = {
     app = "api-app-name"
   }
@@ -49,7 +48,7 @@ resource "vault_kv_secret_v2" "example" {
   delete_all_versions = true
   data_json = jsonencode(
     {
-      foo = "bar"
+      key = "sakljsafkl"
     }
   )
 }

@@ -52,7 +52,7 @@ async function getKv(path) {
         let jwt = await generateJWT();
         await loginVaultJWT(jwt);
     }
-    
+
     var kv = await vault.read("api/data/" + path);
     return kv.data.data;
 }
